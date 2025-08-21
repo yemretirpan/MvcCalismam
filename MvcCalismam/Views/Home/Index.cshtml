@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+
+
+
+
+<div class="py-5 text-center">
+    <h1 class="display-5 fw-bold">ÇAKÜ Öğrenci Sistemi</h1>
+    <p class="lead text-muted">Kayıt, ders ve not işlemlerinizi tek yerden yönetin.</p>
+    <div class="d-inline-flex gap-2 mt-2">
+        <a asp-controller="Ogrenciler" asp-action="Create" class="btn btn-primary btn-lg">Öğrenci Kaydı</a>
+        <a asp-controller="Ogrenciler" asp-action="Index" class="btn btn-outline-secondary btn-lg">Listeyi Gör</a>
+    </div>
+</div>
+
+<h3 class="mb-3">Duyurular</h3>
+<ul class="list-group mb-4">
+    <li class="list-group-item">Kayıt yenileme 25–30 Ağustos tarihleri arasında.</li>
+    <li class="list-group-item">Danışman onayları sistem üzerinden yapılacaktır.</li>
+    <li class="list-group-item">Yeni dönem ders programı yayınlandı.</li>
+</ul>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3 class="display-6 mb-0">@ViewBag.OgrenciSayisi</h3>
+                <div class="text-muted">Öğrenci</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3 class="display-6 mb-0">@ViewBag.DersSayisi</h3>
+                <div class="text-muted">Ders</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3 class="display-6 mb-0">@ViewBag.DanismanSayisi</h3>
+                <div class="text-muted">Danışman</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,46 @@
+﻿@model MvcCalismam.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Yeni Kayıt";
+}
+
+@section Breadcrumb {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Kayitlar" asp-action="Index">Kayıtlar</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Yeni Kayıt</li>
+        </ol>
+    </nav>
+}
+<h2 class="mb-3">Kayıt Ekle</h2>
+
+<form asp-action="Create" method="post" class="row g-3">
+    @Html.AntiForgeryToken()
+    <div class="col-md-4">
+        <label class="form-label">Öğrenci</label>
+        <select name="studentId" class="form-select" asp-items="ViewBag.Students" required>
+            <option value="">Seçiniz...</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Ders</label>
+        <select name="courseId" class="form-select" asp-items="ViewBag.Courses" required>
+            <option value="">Seçiniz...</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Not (opsiyonel)</label>
+        <input name="notDegeri" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="NotDegeri" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

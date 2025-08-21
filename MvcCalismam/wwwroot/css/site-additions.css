@@ -1,0 +1,112 @@
+﻿/* === Theme variables === */
+:root {
+    --bg: #ffffff;
+    --fg: #0f172a;
+    --card: #f8fafc;
+    --muted: #64748b;
+    --link: #2563eb;
+}
+
+.dark {
+    --bg: #0b0f19;
+    --fg: #e6e6e6;
+    --card: #111827;
+    --muted: #94a3b8;
+    --link: #60a5fa;
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--fg);
+}
+
+a {
+    color: var(--link);
+}
+
+.card, .table, .list-group, .dropdown-menu, .modal-content {
+    background: var(--card);
+    color: var(--fg);
+    border-color: rgba(148,163,184,.25);
+}
+
+.navbar, .navbar .dropdown-menu {
+    background: var(--card) !important;
+    color: var(--fg) !important;
+}
+
+.form-control, .form-select {
+    background: var(--card);
+    color: var(--fg);
+    border-color: rgba(148,163,184,.35);
+}
+
+body, .navbar {
+    background: var(--card) !important;
+    color: var(--fg) !important;
+}
+
+    /* Active menu highlight */
+    .navbar .nav-link.active {
+        font-weight: 600;
+        outline: 2px solid rgba(148,163,184,.35);
+        border-radius: .5rem;
+    }
+
+.dark .navbar .nav-link.active {
+    outline-color: rgba(148,163,184,.55);
+}
+
+/* Icon card + hover */
+.card.icon-card .icon {
+    width: 36px;
+    height: 36px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: .75rem;
+    margin-right: .5rem;
+    background: rgba(99,102,241,.12);
+}
+
+.card.icon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    transition: .2s;
+}
+
+/* Detail key-value grid */
+.detail-kv {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: .25rem .75rem;
+}
+
+    .detail-kv .k {
+        color: var(--muted);
+    }
+
+/* Password strength meter */
+.pass-meter {
+    height: 6px;
+    border-radius: 6px;
+    background: #e5e7eb;
+    overflow: hidden
+}
+
+    .pass-meter > div {
+        height: 100%;
+        width: 0;
+        transition: width .2s
+    }
+
+.pass-weak {
+    background: #ef4444
+}
+
+.pass-mid {
+    background: #f59e0b
+}
+
+.pass-strong {
+    background: #22c55e
+}

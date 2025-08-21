@@ -1,0 +1,69 @@
+﻿@model MvcCalismam.Models.Ogrenci
+
+@{
+    ViewData["Title"] = "Yeni Öğrenci";
+}
+
+@section Breadcrumb {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Ogrenciler" asp-action="Index">Öğrenciler</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Yeni Kayıt
+            </li>
+        </ol>
+    </nav>
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post" class="row g-3">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col-md-3">
+        <label asp-for="Tc" class="form-label"></label>
+        <input asp-for="Tc"
+               class="form-control"
+               maxlength="11"
+               inputmode="numeric"
+               pattern="\d{11}"
+               placeholder="11 haneli TC"
+               oninput="this.value=this.value.replace(/\D/g,'').slice(0,11)" />
+        <span asp-validation-for="Tc" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Ad" class="form-label"></label>
+        <input asp-for="Ad" class="form-control"
+               oninput="this.value=this.value.replace(/[^a-zA-ZığüşöçİĞÜŞÖÇ\s]/g,'')" />
+        <span asp-validation-for="Ad" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Soyad" class="form-label"></label>
+        <input asp-for="Soyad" class="form-control"
+               oninput="this.value=this.value.replace(/[^a-zA-ZığüşöçİĞÜŞÖÇ\s]/g,'')" />
+        <span asp-validation-for="Soyad" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Yasi" class="form-label"></label>
+        <input asp-for="Yasi" class="form-control" />
+        <span asp-validation-for="Yasi" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

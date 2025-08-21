@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MvcCalismam.Models.Ders>
+@{
+    ViewData["Title"] = "Dersler";
+}
+
+@section Breadcrumb {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door me-1"></i>Ana Sayfa
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <i class="bi bi-book me-1"></i>Dersler
+            </li>
+        </ol>
+    </nav>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title mb-3">Dersler</h2>
+
+        <!-- Filtre -->
+        <form method="get" class="row g-2 align-items-end mb-3">
+            <div class="col-xl-3">
+                <label class="form-label">Ara (Kod / Ad)</label>
+                <input type="text" name="q" value="@(ViewBag.Q ?? string.Empty)"
+                       class="form-control" placeholder="Örn: MAT101 veya Matematik" />
+            </div>
+            <div class="col-xl-3">
+                <label class="form-label">Kredi</label>
+                <input type="number" name="kredi" value="@(ViewBag.Kredi ?? string.Empty)"
+                       class="form-control" placeholder="Örn: 3" />
+            </div>
+            <div class="col-xl-6 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-funnel me-2"></i>Filtrele
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-x-circle me-2"></i>Temizle
+                </a>
+                <a asp-action="Create"
+                   class="btn btn-success ms-auto d-inline-flex align-items-end gap-2">
+                    <i class="bi bi-journal-plus"></i><span>Yeni Ders</span>
+                </a>
+            </div>
+               
+               
+                
+        </form>
+
+        @if (TempData["ok"] is string ok)
+        {
+            <div class="alert alert-success mb-3">@ok</div>
+        }
+
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Kod</th>
+                    <th>Ad</th>
+                    <th>Kredi</th>
+                    <th class="text-end" style="width:120px;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model)
+                {
+                    <tr>
+                        <td>@d.Kod</td>
+                        <td>@d.Ad</td>
+                        <td>@d.Kredi</td>
+                        <td class="text-end">
+                            <form asp-action="Delete" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="kod" value="@d.Kod" />
+                                <button type="submit" class="btn btn-outline-danger btn-sm"
+                                        data-bs-toggle="tooltip" title="Sil">
+                                    <i class="bi bi-trash"></i><span class="visually-hidden">Sil</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

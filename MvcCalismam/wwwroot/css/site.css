@@ -1,0 +1,196 @@
+/* ---- Genel Renk Deðiþkenleri (Light) ---- */
+html[data-bs-theme="light"] {
+    --brand: #6f42c1; /* mor */
+    --brand-ink: #59359c; /* mor hover */
+    --bg: #FFFFFF; /* açýk arka plan */
+    --fg: #1e1e1e; /* koyu yazý */
+    --muted: #6b7280; /* ikincil metin */
+    --link: #2563eb; /* link */
+    --sidebar-bg: #0f172a; /* sidebar arka plan */
+    --sidebar-text: #e5e7eb; /* sidebar yazý */
+    --sidebar-hover: #1f2937; /* sidebar hover */
+    --sidebar-active-bg: #3b82f6; /* aktif menü */
+    --content-bg: #FFFFFF; /* içerik arka plan */
+    --content-text: #1e1e1e; /* içerik yazý */
+    --card-bg: #ffffff; /* kart arka plan */
+    --border: #e5e7eb; /* kenarlýk */
+}
+
+/* ---- Genel Renk Deðiþkenleri (Dark) ---- */
+html[data-bs-theme="dark"] {
+    --brand: #93c5fd;
+    --brand-ink: #7aa0d6;
+    --bg: #0b0f19; /* koyu arka plan */
+    --fg: #e6e6e6; /* açýk yazý */
+    --muted: #94a3b8;
+    --link: #60a5fa;
+    --sidebar-bg: #0b1020;
+    --sidebar-text: #e5e7eb;
+    --sidebar-hover: #1a2236;
+    --sidebar-active-bg: #2563eb;
+    --content-bg: #0b1220;
+    --content-text: #e5e7eb;
+    --card-bg: #111827;
+    --border: #2a2f3a;
+}
+
+/* Bootstrap ana rengi palete baðlý olsun */
+:root {
+    --bs-primary: var(--brand);
+}
+
+/* ---- Genel Body ---- */
+html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Arial, sans-serif;
+}
+
+/* ---- Linkler ---- */
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--brand-ink);
+    }
+
+/* ---- Navbar (eðer kullanýlýrsa) ---- */
+.navbar, .navbar .dropdown-menu {
+    background: var(--card-bg) !important;
+    color: var(--fg) !important;
+}
+
+.navbar-brand {
+    color: var(--brand) !important;
+    font-weight: bold;
+}
+
+.navbar .nav-link {
+    color: var(--fg) !important;
+}
+
+    .navbar .nav-link.active {
+        color: var(--brand) !important;
+        font-weight: 600;
+        outline: 2px solid var(--border);
+        border-radius: .5rem;
+    }
+
+/* ---- Kartlar / Tablo / Form ---- */
+.card, .table, .list-group, .dropdown-menu, .modal-content {
+    background: var(--card-bg);
+    color: var(--fg);
+    border-color: var(--border);
+    border-radius: .9rem;
+}
+
+    .card .btn {
+        border-radius: .7rem;
+    }
+
+.form-control, .form-select {
+    background: var(--card-bg);
+    color: var(--fg);
+    border-color: var(--border);
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 240px;
+    background: var(--sidebar-bg);
+    padding: 16px 12px;
+    overflow-y: auto;
+    z-index: 1030;
+    color: var(--sidebar-text);
+}
+
+    .sidebar .brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        padding: 20px 0;
+        margin-bottom: 12px;
+    }
+
+        .sidebar .brand img {
+            width: 72px; /* logoyu büyütmek/küçültmek için burayý deðiþtir */
+            height: auto;
+        }
+
+    .sidebar a {
+        display: flex; /* ikon ve yazýyý yan yana hizala */
+        align-items: center;
+        gap: 8px; /* ikon ile yazý arasý boþluk */
+        color: var(--sidebar-text);
+        text-decoration: none;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+
+        .sidebar a i {
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background: var(--sidebar-hover);
+        }
+
+        .sidebar a.active {
+            background: var(--sidebar-active-bg);
+            color: #fff;
+        }
+
+/* ---- Ýçerik ---- */
+.content {
+    margin-left: 240px;
+    min-height: 100vh;
+    background: var(--content-bg);
+    color: var(--content-text);
+    padding: 20px;
+}
+
+/* Küçük ekran */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}
+
+/* ---- Avatar ---- */
+.avatar-sm {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ---- Hero ---- */
+.hero {
+    background: linear-gradient(rgba(13,110,253,.15), rgba(13,110,253,.15)), url('/images/hero.jpg') center/cover no-repeat;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+}
+
+    .hero .lead {
+        max-width: 720px;
+    }
+
+/* ---- Footer ---- */
+.footer {
+    background: var(--card-bg);
+    color: var(--fg);
+    padding: 1rem;
+    text-align: center;
+}

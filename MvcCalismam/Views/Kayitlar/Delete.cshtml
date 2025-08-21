@@ -1,0 +1,34 @@
+﻿@model MvcCalismam.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Kayıt Sil";
+}
+
+@section Breadcrumb {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Kayitlar" asp-action="Index">Kayıtlar</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sil</li>
+        </ol>
+    </nav>
+}
+
+<h2 class="mb-3">Kayıt Sil</h2>
+
+<div class="alert alert-warning">
+    Bu kaydı silmek istediğinize emin misiniz?
+</div>
+
+<ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Öğrenci:</strong> @Model.Student?.Ad @Model.Student?.Soyad</li>
+    <li class="list-group-item"><strong>Ders:</strong> @Model.Course?.Kod - @Model.Course?.Ad</li>
+    <li class="list-group-item"><strong>Not:</strong> @(Model.NotDegeri?.ToString("0.##") ?? "-")</li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
